@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model ProjectListViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Daintree Books</h1>
+    
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <vc:navigation-menu-view-components />
+        </div>
+        <div class="col-8">
+            @foreach (var x in Model.Books)
+            {
+                <partial name="BookSummary" model="x" />
+            }
+        </div>
+    </div>
+</div>
+
+
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-url-category ="@Model.CurrentCategory"></div>

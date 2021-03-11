@@ -1,0 +1,36 @@
+﻿@model Book
+
+<div class="card">
+    <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" src="~/img/favicon.png" height="270" alt="Card image cap">
+        </div>
+        <div class="col">
+            <div class="card-body my-auto">
+                <h4 class="card-title text-center">@Model.Title</h4>
+                <h6 class="card-subtitle mb-2 text-muted text-center">@Model.Author</h6>
+                <br />
+                <div class="my-auto">
+                    <p class="card-text">Publisher : @Model.Publisher</p>
+                    <p class="card-text">Genre : @Model.Classification</p>
+                    <p class="card-text">ISBN : @Model.ISBN</p>
+                    <p class="card-text">Price : $@Model.Price</p>
+                    <p class="card-text">Pages : @Model.Pages</p>
+                </div>
+            </div>
+            @*Add to cart functionality*@
+            <form id="@Model.BookID" asp-page="/Cart" method="post">
+                <input type="hidden" asp-for="BookID" />
+                <input type="hidden" name="returnUrl"
+                       value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                <span class="card-text p-1">
+                    @Model.Title
+                    <button type="submit"
+                            class="btn btn-success btn-sm pull-right" style="float:right">
+                        Add To Cart
+                    </button>
+                </span>
+            </form>
+        </div>
+    </div>
+</div>
